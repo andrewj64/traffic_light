@@ -66,24 +66,24 @@ void updateLights(enum LightState state, struct TrafficLights *lights)
 void printLights(struct TrafficLights lights)
 {
     printf("\n========================\n");
-    printf("North-South lights:\n");
-    printf("%s", printLight(lights.northSouth));
-    printf("East-West lights:\n");
-    printf("%s", printLight(lights.eastWest));
+    printf("North-South lights: ");
+    printf("%s\n", getLightString(lights.northSouth));
+    printf("East-West lights: ");
+    printf("%s\n", getLightString(lights.eastWest));
 }
 
-char* printLight(enum Light light)
+char* getLightString(enum Light light)
 {
     switch (light)
     {
     case RED:
-        return "Light is red\n";
+        return "RED";
         break;
     case YELLOW:
-        return "Light is yellow\n";
+        return "YELLOW";
         break;
     case GREEN:
-        return "Light is green\n";
+        return "GREEN";
         break;
     default:
         return "Unknown state! :(\n";
@@ -101,13 +101,12 @@ enum LightState nextState(enum LightState state, struct TrafficLights *lights)
         if(lights->carPresentNS)
         {
             sleep(10);
-            if(!lights->carPresentEW)
-            {
-                sleep(30);
-            }
         }
-        sleep(5);
-        newState = NS_YELLOW;
+        if(lights->carPresentEW)
+        {
+            sleep(10);
+            newState = NS_YELLOW;
+        }
         break;
 
     case NS_YELLOW:
@@ -126,7 +125,7 @@ enum LightState nextState(enum LightState state, struct TrafficLights *lights)
             sleep(10);
             if(!lights->carPresentNS)
             {
-                sleep(30);
+                sleep(10);
             }
         }
         sleep(5);

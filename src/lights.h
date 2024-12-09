@@ -4,8 +4,9 @@
 #include "LightTypes.h"
 
 void updateLights(enum LightState state, struct TrafficLights *lights);
+void updateCars(bool carNs, bool carEw, struct TrafficLights *lights);
 void printLights(struct TrafficLights lights);
-char* printLight(enum Light light);
+char* getLightString(enum Light light);
 enum LightState nextState(enum LightState state, struct TrafficLights *lights);
 
 #endif // LIGHTS_H
