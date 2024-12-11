@@ -5,16 +5,6 @@
 #include <unistd.h>
 #include "LightTypes.h"
 
-#define DEBUG 0
-
-void initLights(struct TrafficLights *lights)
-{
-    lights->northSouth = GREEN;
-    lights->eastWest = RED;
-    lights->carPresentNS = false;
-    lights->carPresentEW = false;
-}
-
 void updateCars(bool carNs, bool carEw, struct TrafficLights *lights)
 {
     lights->carPresentNS = carNs;
@@ -150,15 +140,6 @@ enum LightState nextState(enum LightState state, struct TrafficLights *lights)
     return newState;
 }
 
-
-// void sleepWrapper(int time)
-// {
-// #if DEBUG
-//     sleep(time)
-// #else
-//     printf("Sleeping for %d s", &time);
-// #endif
-// }
 
 
 
