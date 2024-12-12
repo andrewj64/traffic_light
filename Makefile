@@ -33,7 +33,7 @@ SRCST = test_suite.c
 
 #Derived variables POBJ/TOBJ lists dependencies for the output binaries
 POBJ = $(ODIR)/main.o $(patsubst %.c, $(ODIR)/%.o, $(_SRCS))
-TOBJ = $(ODIR)/test_suite.o $(patsubst %.c, $(ODIR)/%.o, $(_SRCS)) #$(ODIR)/test_suite.o
+TOBJ = $(ODIR)/test_suite.o $(patsubst %.c, $(ODIR)/%.o, $(_SRCS))
 
 #Program link step
 $(BDIR)/$(PNAME): $(POBJ)
